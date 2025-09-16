@@ -26,10 +26,10 @@ class ListFragment : Fragment(), View.OnClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is CoffeeListener) {
+        if(context is CoffeeListener){
             coffeeListener = context
         }
-        else {
+        else{
             throw RuntimeException("Must implement CoffeeListener")
         }
     }
@@ -58,34 +58,14 @@ class ListFragment : Fragment(), View.OnClickListener {
             view.findViewById(R.id.latte)
         )
 
-        coffeeList.forEach {
+        coffeeList.forEach{
             it.setOnClickListener(this)
         }
     }
 
     override fun onClick(v: View?) {
-        v?.let {
-            coffee -> coffeeListener.onSelected(coffee.id)
+        v?.let{
+                coffee -> coffeeListener.onSelected(coffee.id)
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
